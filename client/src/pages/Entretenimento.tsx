@@ -1,5 +1,6 @@
 import GameSnake from "@/components/GameSnake";
 import GameMemory from "@/components/GameMemory";
+import CustomButtonsList from "@/components/CustomButtonsList";
 
 export default function Entretenimento() {
   return (
@@ -33,6 +34,12 @@ export default function Entretenimento() {
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* Botões personalizados */}
+      <div className="mt-16">
+        <h3 className="text-2xl font-bold text-gray-900 mb-8">Botões Personalizados</h3>
+        <CustomButtonsList pageType="entretenimento" />
       </div>
     </div>
   );

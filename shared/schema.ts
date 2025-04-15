@@ -17,7 +17,7 @@ export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 
 // Esquema para os botões personalizados
-export const pageTypes = ["home", "alex", "servico", "sites"] as const;
+export const pageTypes = ["home", "alex", "servico", "sites", "entretenimento"] as const;
 export type PageType = typeof pageTypes[number];
 
 export const customButtons = pgTable("custom_buttons", {
