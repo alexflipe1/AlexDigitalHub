@@ -23,7 +23,7 @@ export default function Home() {
         {/* Seções do site */}
         <div className="space-y-6 col-span-1 lg:col-span-4">
           <h3 className="custom-buttons-title text-center">Seções do Site</h3>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 justify-items-center mx-auto max-w-5xl">
             <Link href="/alex" className="bg-white overflow-hidden shadow rounded-lg border border-gray-100 card-hover-effect">
               <div className="px-4 py-5 sm:p-6 text-center">
                 <div className="bg-primary/10 inline-flex p-3 rounded-full">
