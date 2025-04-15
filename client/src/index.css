@@ -8,6 +8,14 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-gray-50 text-foreground;
+  }
+
+  .custom-buttons-title {
+    @apply text-lg font-medium text-gray-600 mb-6 border-b pb-2 border-gray-200;
+  }
+  
+  .gradient-heading {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600;
   }
 }

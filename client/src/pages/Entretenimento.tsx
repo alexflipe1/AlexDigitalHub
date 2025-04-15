@@ -37,8 +37,8 @@ export default function Entretenimento() {
       </div>
       
       {/* Botões personalizados */}
-      <div className="mt-16">
-        <h3 className="text-2xl font-bold text-gray-900 mb-8">Botões Personalizados</h3>
+      <div className="mt-14">
+        <h3 className="custom-buttons-title">Botões Personalizados</h3>
         <CustomButtonsList pageType="entretenimento" />
       </div>
     </div>
