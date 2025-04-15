@@ -6,7 +6,6 @@ import {
   Globe,
   Sliders 
 } from "lucide-react";
-import CustomButtonsList from "@/components/CustomButtonsList";
 
 export default function Home() {
   return (
@@ -76,14 +75,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        
-        {/* Links personalizados */}
-        <div className="space-y-6 col-span-1 lg:col-span-4">
-          <h3 className="custom-buttons-title">Links Personalizados</h3>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <CustomButtonsList pageType="home" />
-          </div>
-        </div>
+
       </div>
     </div>
   );
