@@ -19,52 +19,44 @@ export default function Home() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <Link href="/alex">
-          <a className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-300">
-            <div className="px-4 py-5 sm:p-6 text-center">
-              <div className="bg-primary/10 inline-flex p-3 rounded-full">
-                <User className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">Alex</h3>
-              <p className="mt-1 text-sm text-gray-500">Acesse os serviços pessoais</p>
+        <Link href="/alex" className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-300">
+          <div className="px-4 py-5 sm:p-6 text-center">
+            <div className="bg-primary/10 inline-flex p-3 rounded-full">
+              <User className="h-6 w-6 text-primary" />
             </div>
-          </a>
+            <h3 className="mt-4 text-lg font-medium text-gray-900">Alex</h3>
+            <p className="mt-1 text-sm text-gray-500">Acesse os serviços pessoais</p>
+          </div>
         </Link>
 
-        <Link href="/servico">
-          <a className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-300">
-            <div className="px-4 py-5 sm:p-6 text-center">
-              <div className="bg-[#10B981]/10 inline-flex p-3 rounded-full">
-                <Settings className="h-6 w-6 text-[#10B981]" />
-              </div>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">Serviço</h3>
-              <p className="mt-1 text-sm text-gray-500">Acesse os serviços disponíveis</p>
+        <Link href="/servico" className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-300">
+          <div className="px-4 py-5 sm:p-6 text-center">
+            <div className="bg-[#10B981]/10 inline-flex p-3 rounded-full">
+              <Settings className="h-6 w-6 text-[#10B981]" />
             </div>
-          </a>
+            <h3 className="mt-4 text-lg font-medium text-gray-900">Serviço</h3>
+            <p className="mt-1 text-sm text-gray-500">Acesse os serviços disponíveis</p>
+          </div>
         </Link>
 
-        <Link href="/entretenimento">
-          <a className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-300">
-            <div className="px-4 py-5 sm:p-6 text-center">
-              <div className="bg-[#8B5CF6]/10 inline-flex p-3 rounded-full">
-                <Play className="h-6 w-6 text-[#8B5CF6]" />
-              </div>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">Entretenimento</h3>
-              <p className="mt-1 text-sm text-gray-500">Jogos e diversão</p>
+        <Link href="/entretenimento" className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-300">
+          <div className="px-4 py-5 sm:p-6 text-center">
+            <div className="bg-[#8B5CF6]/10 inline-flex p-3 rounded-full">
+              <Play className="h-6 w-6 text-[#8B5CF6]" />
             </div>
-          </a>
+            <h3 className="mt-4 text-lg font-medium text-gray-900">Entretenimento</h3>
+            <p className="mt-1 text-sm text-gray-500">Jogos e diversão</p>
+          </div>
         </Link>
 
-        <Link href="/sites">
-          <a className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-300">
-            <div className="px-4 py-5 sm:p-6 text-center">
-              <div className="bg-blue-100 inline-flex p-3 rounded-full">
-                <Globe className="h-6 w-6 text-blue-500" />
-              </div>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">Sites</h3>
-              <p className="mt-1 text-sm text-gray-500">Acesse meus sites</p>
+        <Link href="/sites" className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-300">
+          <div className="px-4 py-5 sm:p-6 text-center">
+            <div className="bg-blue-100 inline-flex p-3 rounded-full">
+              <Globe className="h-6 w-6 text-blue-500" />
             </div>
-          </a>
+            <h3 className="mt-4 text-lg font-medium text-gray-900">Sites</h3>
+            <p className="mt-1 text-sm text-gray-500">Acesse meus sites</p>
+          </div>
         </Link>
       </div>
     </div>

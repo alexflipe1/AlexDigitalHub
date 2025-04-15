@@ -11,29 +11,21 @@ export default function Footer() {
             </p>
           </div>
           <div className="mt-4 flex justify-center md:mt-0 space-x-6">
-            <Link href="/">
-              <a className="text-gray-400 hover:text-gray-500">
-                <span className="sr-only">Sobre</span>
-                <span className="text-sm">Sobre</span>
-              </a>
+            <Link href="/" className="text-gray-400 hover:text-gray-500">
+              <span className="sr-only">Sobre</span>
+              <span className="text-sm">Sobre</span>
             </Link>
-            <Link href="/">
-              <a className="text-gray-400 hover:text-gray-500">
-                <span className="sr-only">Contato</span>
-                <span className="text-sm">Contato</span>
-              </a>
+            <Link href="/" className="text-gray-400 hover:text-gray-500">
+              <span className="sr-only">Contato</span>
+              <span className="text-sm">Contato</span>
             </Link>
-            <Link href="/">
-              <a className="text-gray-400 hover:text-gray-500">
-                <span className="sr-only">Termos</span>
-                <span className="text-sm">Termos</span>
-              </a>
+            <Link href="/" className="text-gray-400 hover:text-gray-500">
+              <span className="sr-only">Termos</span>
+              <span className="text-sm">Termos</span>
             </Link>
-            <Link href="/">
-              <a className="text-gray-400 hover:text-gray-500">
-                <span className="sr-only">Privacidade</span>
-                <span className="text-sm">Privacidade</span>
-              </a>
+            <Link href="/" className="text-gray-400 hover:text-gray-500">
+              <span className="sr-only">Privacidade</span>
+              <span className="text-sm">Privacidade</span>
             </Link>
           </div>
         </div>
