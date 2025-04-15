@@ -122,10 +122,10 @@ export default function GameMemory() {
           <div
             key={card.id}
             className={`
-              flex items-center justify-center rounded-md cursor-pointer h-14
-              ${card.isFlipped || card.isMatched ? 'bg-white' : 'bg-gray-200'}
-              ${card.isMatched ? 'bg-green-100' : ''}
-              transition-colors duration-300
+              flex items-center justify-center rounded-md cursor-pointer h-14 shadow-sm border
+              ${card.isFlipped || card.isMatched ? 'bg-white border-gray-200' : 'bg-gradient-to-br from-primary/70 to-primary border-primary/20'}
+              ${card.isMatched ? 'bg-green-50 border-green-200' : ''}
+              transform transition-all duration-300 hover:scale-[1.03]
             `}
             onClick={() => flipCard(card.id)}
           >
@@ -135,12 +135,18 @@ export default function GameMemory() {
           </div>
         ))}
       </div>
-      <Button 
-        onClick={createCards} 
-        className="mt-4 bg-[#10B981] hover:bg-[#10B981]/80"
-      >
-        Novo Jogo
-      </Button>
+      <div className="mt-4 flex justify-between items-center">
+        <div className="bg-primary/10 px-3 py-1.5 rounded-full text-sm">
+          <span className="font-medium text-primary">Pares encontrados: </span>
+          <span className="font-semibold">{matchedPairs}/{symbols.length}</span>
+        </div>
+        <Button 
+          onClick={createCards} 
+          className="bg-primary hover:bg-primary/90 shadow-sm"
+        >
+          Novo Jogo
+        </Button>
+      </div>
     </div>
   );
 }

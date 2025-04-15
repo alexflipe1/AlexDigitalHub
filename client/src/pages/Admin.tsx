@@ -262,7 +262,14 @@ export default function Admin() {
         <TabsContent value="createEdit">
           <Card>
             <CardHeader>
-              <CardTitle>
+              <CardTitle className="flex items-center">
+                <span className="bg-primary/10 p-1.5 rounded-full mr-2">
+                  {editingButton ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+                  )}
+                </span>
                 {editingButton ? "Editar Botão" : "Criar Novo Botão"}
               </CardTitle>
               <CardDescription>
@@ -453,7 +460,12 @@ export default function Admin() {
         <TabsContent value="list">
           <Card>
             <CardHeader>
-              <CardTitle>Botões Personalizados</CardTitle>
+              <CardTitle className="flex items-center">
+                <span className="bg-primary/10 p-1.5 rounded-full mr-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                </span>
+                Botões Personalizados
+              </CardTitle>
               <CardDescription>
                 Lista de todos os botões personalizados do site
               </CardDescription>

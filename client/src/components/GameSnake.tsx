@@ -186,16 +186,16 @@ export default function GameSnake() {
     <>
       <div 
         ref={containerRef} 
-        className="border-2 border-gray-200 rounded-lg h-64 bg-black relative"
+        className="border-2 border-gray-200 rounded-lg h-64 bg-black relative shadow-inner"
       >
         {!isPlaying && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-80 text-white">
-            <Button onClick={startGame} className="bg-primary hover:bg-primary/80">
+            <Button onClick={startGame} className="bg-primary hover:bg-primary/90 shadow-sm">
               Começar Jogo
             </Button>
           </div>
         )}
-        <div className="absolute top-2 right-2 text-white font-bold">
+        <div className="absolute top-2 right-2 bg-primary/90 px-3 py-1 rounded-full text-white font-semibold text-sm">
           Score: {score}
         </div>
       </div>
