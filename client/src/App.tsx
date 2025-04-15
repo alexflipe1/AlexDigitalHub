@@ -10,6 +10,7 @@ import Entretenimento from "@/pages/Entretenimento";
 import Sites from "@/pages/Sites";
 import Admin from "@/pages/Admin";
 import Login from "@/pages/Login";
+import AlexLogin from "@/pages/AlexLogin";
 import MainLayout from "./layouts/MainLayout";
 
 function Router() {
@@ -22,6 +23,7 @@ function Router() {
       <Route path="/sites" component={Sites} />
       <Route path="/admin" component={Admin} />
       <Route path="/login" component={Login} />
+      <Route path="/alex-login" component={AlexLogin} />
       <Route component={NotFound} />
     </Switch>
   );
