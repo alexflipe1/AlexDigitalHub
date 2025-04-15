@@ -9,8 +9,8 @@ import {
 
 export default function Home() {
   return (
-    <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-12">
+    <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+      <div className="text-center mb-12 w-full">
         <h2 className="text-3xl font-extrabold sm:text-4xl gradient-heading">
           Bem-vindo ao meu site pessoal
         </h2>
@@ -19,11 +19,11 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="w-full flex justify-center">
         {/* Seções do site */}
-        <div className="space-y-6 col-span-1 lg:col-span-4">
+        <div className="space-y-6 w-full max-w-5xl">
           <h3 className="custom-buttons-title text-center">Seções do Site</h3>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 justify-items-center mx-auto max-w-5xl">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 justify-items-center">
             <Link href="/alex" className="bg-white overflow-hidden shadow rounded-lg border border-gray-100 card-hover-effect">
               <div className="px-4 py-5 sm:p-6 text-center">
                 <div className="bg-primary/10 inline-flex p-3 rounded-full">
