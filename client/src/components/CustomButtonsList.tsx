@@ -95,7 +95,8 @@ export default function CustomButtonsList({ pageType }: CustomButtonsListProps) 
           description={button.description}
           icon={getIconComponent(button.icon, button.iconBgColor)}
           href={button.url}
-          iconBgClass={`bg-[${button.iconBgColor}]/10`}
+          iconBgClass={`bg-opacity-10`}
+          style={{ backgroundColor: `${button.iconBgColor}20` }}
         />
       ))}
     </div>

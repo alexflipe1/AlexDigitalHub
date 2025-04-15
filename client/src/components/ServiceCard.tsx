@@ -6,6 +6,7 @@ interface ServiceCardProps {
   icon: ReactNode;
   href: string;
   iconBgClass?: string;
+  style?: React.CSSProperties;
 }
 
 export default function ServiceCard({
@@ -13,7 +14,8 @@ export default function ServiceCard({
   description,
   icon,
   href,
-  iconBgClass = "bg-primary/10"
+  iconBgClass = "bg-primary/10",
+  style
 }: ServiceCardProps) {
   return (
     <a
@@ -24,7 +26,7 @@ export default function ServiceCard({
     >
       <div className="px-4 py-5 sm:p-6">
         <div className="flex items-center">
-          <div className={`flex-shrink-0 ${iconBgClass} rounded-md p-3`}>
+          <div className={`flex-shrink-0 ${iconBgClass} rounded-md p-3`} style={style}>
             {icon}
           </div>
           <div className="ml-4">
