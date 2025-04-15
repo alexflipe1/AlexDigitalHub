@@ -30,11 +30,11 @@ export default function CustomButtonsList({ pageType }: CustomButtonsListProps) 
     const fetchButtons = async () => {
       setIsLoading(true);
       try {
-        const data = await apiRequest({
+        const data = await apiRequest<CustomButton[]>({
           url: `/api/buttons/page/${pageType}`,
           method: "GET",
         });
-        setButtons(data as CustomButton[]);
+        setButtons(data);
         setError(null);
       } catch (error) {
         console.error("Erro ao carregar botões:", error);

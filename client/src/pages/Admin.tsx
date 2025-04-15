@@ -103,11 +103,11 @@ export default function Admin() {
   const fetchButtons = async () => {
     setIsLoading(true);
     try {
-      const data = await apiRequest({
+      const data = await apiRequest<CustomButton[]>({
         url: "/api/buttons",
         method: "GET",
       });
-      setButtons(data as CustomButton[]);
+      setButtons(data);
     } catch (error) {
       console.error("Erro ao carregar botões:", error);
       toast({
@@ -161,7 +161,7 @@ export default function Admin() {
     try {
       if (editingButton) {
         // Modo de edição
-        await apiRequest({
+        await apiRequest<CustomButton>({
           url: `/api/buttons/${editingButton.id}`,
           method: "PUT",
           data: values,
@@ -172,7 +172,7 @@ export default function Admin() {
         });
       } else {
         // Modo de criação
-        await apiRequest({
+        await apiRequest<CustomButton>({
           url: "/api/buttons",
           method: "POST",
           data: values,
@@ -215,7 +215,7 @@ export default function Admin() {
   const handleDelete = async (id: number) => {
     setIsLoading(true);
     try {
-      await apiRequest({
+      await apiRequest<void>({
         url: `/api/buttons/${id}`,
         method: "DELETE",
       });
