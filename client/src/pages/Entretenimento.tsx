@@ -50,8 +50,10 @@ export default function Entretenimento() {
       
       {/* Botões personalizados */}
       <div className="mt-14">
-        <h3 className="custom-buttons-title">Botões Personalizados</h3>
-        <CustomButtonsList pageType="entretenimento" />
+        <h3 className="custom-buttons-title">Serviços de Entretenimento</h3>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <CustomButtonsList pageType="entretenimento" />
+        </div>
       </div>
     </div>
   );

@@ -87,7 +87,7 @@ export default function CustomButtonsList({ pageType }: CustomButtonsListProps) 
   }
 
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <>
       {buttons.map((button) => (
         <ServiceCard
           key={button.id}
@@ -99,6 +99,6 @@ export default function CustomButtonsList({ pageType }: CustomButtonsListProps) 
           style={{ backgroundColor: `${button.iconBgColor}20` }}
         />
       ))}
-    </div>
+    </>
   );
 }
