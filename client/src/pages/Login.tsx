@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -11,10 +11,18 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const [_, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
 
   // Senha fixa para o admin (em um ambiente real, isso seria validado no servidor)
   const adminPassword = "admin123";
+
+  // Verifica se já está autenticado ao carregar a página
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAdminAuthenticated") === "true";
+    if (isAuthenticated) {
+      setLocation("/admin");
+    }
+  }, [setLocation]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();

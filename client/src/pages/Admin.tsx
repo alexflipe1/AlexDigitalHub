@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "wouter";
+import { useLocation } from "wouter";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PageType, pageTypes } from "@shared/schema";
@@ -53,7 +53,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import { Home, Settings, Play, Globe, Pencil, Trash } from "lucide-react";
+import { Home, Settings, Play, Globe, Pencil, Trash, LogOut } from "lucide-react";
 
 // Tipo para representar um botão personalizado
 type CustomButton = {
@@ -86,6 +86,7 @@ export default function Admin() {
   const [isLoading, setIsLoading] = useState(false);
   const [editingButton, setEditingButton] = useState<CustomButton | null>(null);
   const { toast } = useToast();
+  const [_, setLocation] = useLocation();
 
   // Inicializar o formulário com react-hook-form
   const form = useForm<FormValues>({
@@ -120,9 +121,22 @@ export default function Admin() {
     }
   };
 
+  // Verificar autenticação e buscar botões
   useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAdminAuthenticated") === "true";
+    if (!isAuthenticated) {
+      // Se não estiver autenticado, redirecionar para a página de login
+      toast({
+        title: "Acesso restrito",
+        description: "Você precisa fazer login para acessar esta página",
+        variant: "destructive",
+      });
+      setLocation("/login");
+      return;
+    }
+    
     fetchButtons();
-  }, []);
+  }, [setLocation, toast]);
 
   // Retornar o ícone baseado no nome
   const getIconComponent = (iconName: string) => {
@@ -245,15 +259,35 @@ export default function Admin() {
     form.reset();
   };
 
+  // Fazer logout
+  const handleLogout = () => {
+    localStorage.removeItem("isAdminAuthenticated");
+    toast({
+      title: "Logout realizado",
+      description: "Você foi desconectado da área administrativa",
+    });
+    setLocation("/login");
+  };
+
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-extrabold sm:text-4xl gradient-heading">
-          Administração
-        </h2>
-        <p className="mt-4 text-xl text-gray-600">
-          Gerencie os botões personalizados do seu site
-        </p>
+      <div className="flex flex-col md:flex-row items-center justify-between mb-12">
+        <div className="text-center md:text-left mb-4 md:mb-0">
+          <h2 className="text-3xl font-extrabold sm:text-4xl gradient-heading">
+            Administração
+          </h2>
+          <p className="mt-2 text-xl text-gray-600">
+            Gerencie os botões personalizados do seu site
+          </p>
+        </div>
+        <Button 
+          variant="destructive" 
+          className="flex items-center gap-2"
+          onClick={handleLogout}
+        >
+          <LogOut className="h-4 w-4" />
+          Sair
+        </Button>
       </div>
 
       <Tabs defaultValue="createEdit" className="w-full">
