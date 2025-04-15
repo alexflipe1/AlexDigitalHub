@@ -22,7 +22,7 @@ export default function ServiceCard({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md hover:bg-gray-50 transition duration-300"
+      className="bg-white overflow-hidden shadow rounded-lg border border-gray-100 card-hover-effect"
     >
       <div className="px-4 py-5 sm:p-6">
         <div className="flex items-center">

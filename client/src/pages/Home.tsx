@@ -21,7 +21,7 @@ export default function Home() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <Link href="/alex" className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-300">
+        <Link href="/alex" className="bg-white overflow-hidden shadow rounded-lg border border-gray-100 card-hover-effect">
           <div className="px-4 py-5 sm:p-6 text-center">
             <div className="bg-primary/10 inline-flex p-3 rounded-full">
               <User className="h-6 w-6 text-primary" />
@@ -31,7 +31,7 @@ export default function Home() {
           </div>
         </Link>
 
-        <Link href="/servico" className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-300">
+        <Link href="/servico" className="bg-white overflow-hidden shadow rounded-lg border border-gray-100 card-hover-effect">
           <div className="px-4 py-5 sm:p-6 text-center">
             <div className="bg-[#10B981]/10 inline-flex p-3 rounded-full">
               <Settings className="h-6 w-6 text-[#10B981]" />
@@ -41,7 +41,7 @@ export default function Home() {
           </div>
         </Link>
 
-        <Link href="/entretenimento" className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-300">
+        <Link href="/entretenimento" className="bg-white overflow-hidden shadow rounded-lg border border-gray-100 card-hover-effect">
           <div className="px-4 py-5 sm:p-6 text-center">
             <div className="bg-[#8B5CF6]/10 inline-flex p-3 rounded-full">
               <Play className="h-6 w-6 text-[#8B5CF6]" />
@@ -51,7 +51,7 @@ export default function Home() {
           </div>
         </Link>
 
-        <Link href="/sites" className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-300">
+        <Link href="/sites" className="bg-white overflow-hidden shadow rounded-lg border border-gray-100 card-hover-effect">
           <div className="px-4 py-5 sm:p-6 text-center">
             <div className="bg-blue-100 inline-flex p-3 rounded-full">
               <Globe className="h-6 w-6 text-blue-500" />
@@ -61,7 +61,7 @@ export default function Home() {
           </div>
         </Link>
         
-        <Link href="/admin" className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-300">
+        <Link href="/admin" className="bg-white overflow-hidden shadow rounded-lg border border-gray-100 card-hover-effect">
           <div className="px-4 py-5 sm:p-6 text-center">
             <div className="bg-orange-100 inline-flex p-3 rounded-full">
               <Sliders className="h-6 w-6 text-orange-500" />

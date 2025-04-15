@@ -16,6 +16,11 @@
   }
   
   .gradient-heading {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600 tracking-tight;
+  }
+
+  /* Melhorias visuais para os cards */
+  .card-hover-effect {
+    @apply transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px] hover:border-primary/20;
   }
 }
