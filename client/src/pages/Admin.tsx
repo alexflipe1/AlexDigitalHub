@@ -70,7 +70,7 @@ type CustomButton = {
 const formSchema = z.object({
   title: z.string().min(1, { message: "O título é obrigatório" }),
   description: z.string().min(1, { message: "A descrição é obrigatória" }),
-  pageType: z.enum(["home", "alex", "servico", "sites"] as const, {
+  pageType: z.enum(["home", "alex", "servico", "sites", "entretenimento"] as const, {
     required_error: "Selecione uma página",
   }),
   icon: z.string().min(1, { message: "Selecione um ícone" }),
@@ -150,6 +150,8 @@ export default function Admin() {
         return "Serviço";
       case "sites":
         return "Sites";
+      case "entretenimento":
+        return "Entretenimento";
       default:
         return pageType;
     }
