@@ -25,7 +25,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">
             <Link href="/">
-              <h1 className="text-xl font-bold text-primary cursor-pointer">Alex Flipe</h1>
+              <h1 className="text-xl font-bold text-primary cursor-pointer">Alex</h1>
             </Link>
           </div>
           

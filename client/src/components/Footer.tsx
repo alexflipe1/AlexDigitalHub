@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="md:flex md:items-center md:justify-between">
           <div className="flex justify-center md:justify-start">
             <p className="text-center text-sm text-gray-500">
-              &copy; {new Date().getFullYear()} Alex Flipe. Todos os direitos reservados.
+              &copy; {new Date().getFullYear()} Alex. Todos os direitos reservados.
             </p>
           </div>
           <div className="mt-4 flex justify-center md:mt-0 space-x-6">
