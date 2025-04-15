@@ -1,5 +1,6 @@
 import ServiceCard from "@/components/ServiceCard";
 import { Server, Home as HomeIcon, Database, Monitor } from "lucide-react";
+import CustomButtonsList from "@/components/CustomButtonsList";
 
 export default function Alex() {
   const alexServices = [
@@ -55,6 +56,12 @@ export default function Alex() {
             iconBgClass={service.iconBgClass}
           />
         ))}
+      </div>
+
+      {/* Botões personalizados */}
+      <div className="mt-16">
+        <h3 className="text-2xl font-bold text-gray-900 mb-8">Botões Personalizados</h3>
+        <CustomButtonsList pageType="alex" />
       </div>
     </div>
   );

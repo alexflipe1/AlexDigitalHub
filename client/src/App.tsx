@@ -8,6 +8,7 @@ import Alex from "@/pages/Alex";
 import Servico from "@/pages/Servico";
 import Entretenimento from "@/pages/Entretenimento";
 import Sites from "@/pages/Sites";
+import Admin from "@/pages/Admin";
 import MainLayout from "./layouts/MainLayout";
 
 function Router() {
@@ -18,6 +19,7 @@ function Router() {
       <Route path="/servico" component={Servico} />
       <Route path="/entretenimento" component={Entretenimento} />
       <Route path="/sites" component={Sites} />
+      <Route path="/admin" component={Admin} />
       <Route component={NotFound} />
     </Switch>
   );
