@@ -13,8 +13,11 @@ export default function Servico() {
       </div>
       
       {/* Todos os botões são personalizados e gerenciados pelo admin */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <CustomButtonsList pageType="servico" />
+      <div className="space-y-6">
+        <h3 className="custom-buttons-title">Serviços Disponíveis</h3>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <CustomButtonsList pageType="servico" />
+        </div>
       </div>
     </div>
   );

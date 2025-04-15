@@ -67,14 +67,14 @@ export default function CustomButtonsList({ pageType }: CustomButtonsListProps) 
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <>
         {[...Array(4)].map((_, index) => (
           <div 
             key={index} 
             className="bg-gray-100 animate-pulse h-32 rounded-lg"
           />
         ))}
-      </div>
+      </>
     );
   }
 
@@ -83,7 +83,11 @@ export default function CustomButtonsList({ pageType }: CustomButtonsListProps) 
   }
 
   if (buttons.length === 0) {
-    return null;
+    return (
+      <div className="col-span-full text-center py-6 text-gray-500">
+        Nenhum botão personalizado adicionado para esta seção.
+      </div>
+    );
   }
 
   return (

@@ -13,8 +13,11 @@ export default function Sites() {
       </div>
       
       {/* Todos os botões são personalizados e gerenciados pelo admin */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 max-w-4xl mx-auto">
-        <CustomButtonsList pageType="sites" />
+      <div className="space-y-6">
+        <h3 className="custom-buttons-title">Meus Websites</h3>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto">
+          <CustomButtonsList pageType="sites" />
+        </div>
       </div>
     </div>
   );
