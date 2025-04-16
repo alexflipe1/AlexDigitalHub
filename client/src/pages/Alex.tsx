@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import CustomButtonsList from "@/components/CustomButtonsList";
@@ -10,10 +10,15 @@ export default function Alex() {
   const [_, setLocation] = useLocation();
   const { toast } = useToast();
 
-  // Verificar autenticação
+  // Estado para verificar se está autenticado
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  
+  // Verificar autenticação toda vez que a página for carregada
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem("isAlexAuthenticated") === "true";
-    if (!isAuthenticated) {
+    const authStatus = localStorage.getItem("isAlexAuthenticated") === "true";
+    setIsAuthenticated(authStatus);
+    
+    if (!authStatus) {
       // Se não estiver autenticado, redirecionar para a página de login
       toast({
         title: "Acesso restrito",
@@ -34,6 +39,20 @@ export default function Alex() {
     });
     setLocation("/alex-login");
   };
+
+  // Se ainda não verificou a autenticação, não renderiza nada ou mostra um loading
+  if (isAuthenticated === null) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+  
+  // Se não está autenticado, também não renderiza o conteúdo (será redirecionado)
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
