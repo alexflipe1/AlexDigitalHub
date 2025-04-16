@@ -1,24 +1,30 @@
 import { useEffect } from 'react';
 
+// Este componente é responsável por injetar o script do botão "Voltar para o site"
+// em sites externos quando a página é carregada
 export default function ScriptInjector() {
   useEffect(() => {
-    // Cria um elemento de script para o navbar
-    const navbarScript = document.createElement('script');
-    navbarScript.src = '/navbar-script.js';
-    navbarScript.defer = true;
-    navbarScript.id = 'alex-navbar-script';
+    // Verifica se estamos em um site externo
+    const isExternalSite = !window.location.href.includes(window.location.host);
     
-    // Adiciona o script no final do <head>
-    document.head.appendChild(navbarScript);
-    
-    return () => {
-      // Remove o script ao desmontar o componente
-      const existingScript = document.getElementById('alex-navbar-script');
-      if (existingScript) {
-        document.head.removeChild(existingScript);
+    if (isExternalSite) {
+      // Se estivermos em um site externo, tenta injetar o script do botão de voltar
+      // O script está armazenado no localStorage e foi preparado quando o link foi clicado
+      const script = localStorage.getItem('backButtonScript');
+      
+      if (script) {
+        try {
+          // Cria um elemento script
+          const scriptElement = document.createElement('script');
+          scriptElement.textContent = script;
+          document.body.appendChild(scriptElement);
+        } catch (error) {
+          console.error('Erro ao injetar o script:', error);
+        }
       }
-    };
+    }
   }, []);
-  
-  return null; // Este componente não renderiza nada visível
+
+  // Este componente não renderiza nada visualmente
+  return null;
 }

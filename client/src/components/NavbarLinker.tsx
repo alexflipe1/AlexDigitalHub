@@ -1,5 +1,30 @@
 import { useEffect } from 'react';
-import { useLocation } from 'wouter';
+import { Link, useLocation } from 'wouter';
+
+// Função para injetar o script do botão de voltar em um site externo
+const injectBackButton = (targetUrl: string) => {
+  // Cria um bookmark com JavaScript que fará o download e execução do nosso script
+  const backButtonScriptUrl = `${window.location.origin}/back-button.js`;
+  const scriptTag = `
+    const script = document.createElement('script');
+    script.src = "${backButtonScriptUrl}";
+    document.body.appendChild(script);
+  `;
+  
+  // Codifica o script como URI para usar em um bookmarklet
+  const bookmarklet = `javascript:(function(){${encodeURIComponent(scriptTag)}})();`;
+  
+  // Salva o bookmarklet no localStorage
+  localStorage.setItem("backButtonBookmarklet", bookmarklet);
+  
+  // Também salva o script em localStorage para caso o site de destino bloqueie scripts externos
+  fetch(backButtonScriptUrl)
+    .then(response => response.text())
+    .then(script => {
+      localStorage.setItem("backButtonScript", script);
+    })
+    .catch(error => console.error("Erro ao buscar o script:", error));
+};
 
 // Componente que salva a última página interna antes de navegar para um link externo
 export function NavbarTracker() {
@@ -7,7 +32,7 @@ export function NavbarTracker() {
   
   useEffect(() => {
     // Atualiza a última página interna visitada quando a localização muda
-    localStorage.setItem('alexLastPage', location);
+    localStorage.setItem('lastPage', location);
   }, [location]);
   
   return null; // Este componente não renderiza nada visível
@@ -27,8 +52,10 @@ export function useNavbarLink() {
       e.preventDefault();
       
       // Salva a última página interna visitada
-      localStorage.setItem('alexLastPage', location);
-      localStorage.setItem('fromAlexSite', 'true');
+      localStorage.setItem('lastPage', location);
+      
+      // Prepara o script do botão de voltar
+      injectBackButton(href);
       
       // Abre o link na mesma janela
       window.location.href = href;
@@ -67,6 +94,16 @@ export default function NavbarLink({
     }
   };
   
+  // Se for um link interno, usa o componente Link do wouter
+  if (href.startsWith('/')) {
+    return (
+      <Link href={href} className={className} {...props}>
+        {children}
+      </Link>
+    );
+  }
+  
+  // Para links externos, usa uma âncora normal com o manipulador de clique
   return (
     <a 
       href={href}

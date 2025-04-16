@@ -20,6 +20,31 @@ export default function ServiceCard({
 }: ServiceCardProps) {
   const [location] = useLocation();
 
+  // Função para injetar o script do botão de voltar em um site externo
+  const injectBackButton = (targetUrl: string) => {
+    // Cria um bookmark com JavaScript que fará o download e execução do nosso script
+    const backButtonScriptUrl = `${window.location.origin}/back-button.js`;
+    const scriptTag = `
+      const script = document.createElement('script');
+      script.src = "${backButtonScriptUrl}";
+      document.body.appendChild(script);
+    `;
+    
+    // Codifica o script como URI para usar em um bookmarklet
+    const bookmarklet = `javascript:(function(){${encodeURIComponent(scriptTag)}})();`;
+    
+    // Salva o bookmarklet no localStorage
+    localStorage.setItem("backButtonBookmarklet", bookmarklet);
+    
+    // Também salva o script em localStorage para caso o site de destino bloqueie scripts externos
+    fetch(backButtonScriptUrl)
+      .then(response => response.text())
+      .then(script => {
+        localStorage.setItem("backButtonScript", script);
+      })
+      .catch(error => console.error("Erro ao buscar o script:", error));
+  };
+
   // Função para lidar com o clique em links
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     // Se for um link interno (começa com /), deixa o comportamento padrão
@@ -32,6 +57,9 @@ export default function ServiceCard({
     
     // Salva a localização atual para que o usuário possa voltar
     localStorage.setItem("lastPage", location);
+    
+    // Prepara o script do botão de voltar
+    injectBackButton(href);
     
     // Abre o link na mesma aba
     window.location.href = href;

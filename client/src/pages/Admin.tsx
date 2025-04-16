@@ -558,6 +558,29 @@ export default function Admin() {
                               if (!button.url.startsWith('/')) {
                                 e.preventDefault();
                                 localStorage.setItem('lastPage', '/admin');
+                                
+                                // Prepara o script do botão de voltar
+                                const backButtonScriptUrl = `${window.location.origin}/back-button.js`;
+                                const scriptTag = `
+                                  const script = document.createElement('script');
+                                  script.src = "${backButtonScriptUrl}";
+                                  document.body.appendChild(script);
+                                `;
+                                
+                                // Codifica o script como URI para usar em um bookmarklet
+                                const bookmarklet = `javascript:(function(){${encodeURIComponent(scriptTag)}})();`;
+                                
+                                // Salva o bookmarklet no localStorage
+                                localStorage.setItem("backButtonBookmarklet", bookmarklet);
+                                
+                                // Também salva o script em localStorage para caso o site de destino bloqueie scripts externos
+                                fetch(backButtonScriptUrl)
+                                  .then(response => response.text())
+                                  .then(script => {
+                                    localStorage.setItem("backButtonScript", script);
+                                  })
+                                  .catch(error => console.error("Erro ao buscar o script:", error));
+                                
                                 window.location.href = button.url;
                               }
                             }}
