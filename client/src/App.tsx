@@ -11,8 +11,8 @@ import Sites from "@/pages/Sites";
 import Admin from "@/pages/Admin";
 import Login from "@/pages/Login";
 import AlexLogin from "@/pages/AlexLogin";
-import Viewer from "@/pages/Viewer";
 import MainLayout from "./layouts/MainLayout";
+import { NavbarTracker } from "@/components/NavbarLinker";
 
 function Router() {
   return (
@@ -25,7 +25,6 @@ function Router() {
       <Route path="/admin" component={Admin} />
       <Route path="/login" component={Login} />
       <Route path="/alex-login" component={AlexLogin} />
-      <Route path="/viewer" component={Viewer} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -34,6 +33,8 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      {/* O NavbarTracker rastreia a navegação do usuário para poder retornar quando vier de sites externos */}
+      <NavbarTracker />
       <MainLayout>
         <Router />
       </MainLayout>
