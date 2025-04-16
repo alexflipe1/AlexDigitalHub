@@ -552,7 +552,15 @@ export default function Admin() {
                         </TableCell>
                         <TableCell className="max-w-[200px] truncate">
                           <a
-                            href={button.url}
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              if (button.url.startsWith('/')) {
+                                setLocation(button.url);
+                              } else {
+                                setLocation(`/viewer?url=${encodeURIComponent(button.url)}&from=/admin`);
+                              }
+                            }}
                             className="text-blue-500 hover:underline"
                           >
                             {button.url}

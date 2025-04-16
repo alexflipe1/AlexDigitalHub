@@ -11,6 +11,7 @@ import Sites from "@/pages/Sites";
 import Admin from "@/pages/Admin";
 import Login from "@/pages/Login";
 import AlexLogin from "@/pages/AlexLogin";
+import Viewer from "@/pages/Viewer";
 import MainLayout from "./layouts/MainLayout";
 
 function Router() {
@@ -24,6 +25,7 @@ function Router() {
       <Route path="/admin" component={Admin} />
       <Route path="/login" component={Login} />
       <Route path="/alex-login" component={AlexLogin} />
+      <Route path="/viewer" component={Viewer} />
       <Route component={NotFound} />
     </Switch>
   );
