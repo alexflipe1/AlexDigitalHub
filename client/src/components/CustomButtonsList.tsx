@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { PageType } from "@shared/schema";
+import { PageType, OpenType } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 import ServiceCard from "@/components/ServiceCard";
 import { Home, Settings, Play, Globe } from "lucide-react";
 import { ReactNode } from "react";
+import { useLocation } from "wouter";
 
 // Tipo para representar um botão personalizado
 type CustomButton = {
@@ -14,6 +15,7 @@ type CustomButton = {
   icon: string;
   iconBgColor: string;
   url: string;
+  openType: OpenType;
   createdAt: string;
 };
 
@@ -25,6 +27,7 @@ export default function CustomButtonsList({ pageType }: CustomButtonsListProps) 
   const [buttons, setButtons] = useState<CustomButton[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [_, navigate] = useLocation();
 
   useEffect(() => {
     const fetchButtons = async () => {
@@ -46,6 +49,19 @@ export default function CustomButtonsList({ pageType }: CustomButtonsListProps) 
 
     fetchButtons();
   }, [pageType]);
+
+  // Função para lidar com o clique no botão baseado no tipo de abertura
+  const handleButtonClick = (button: CustomButton, event: React.MouseEvent) => {
+    event.preventDefault();
+    
+    if (button.openType === "iframe") {
+      // Redireciona para o visualizador com a URL do botão
+      navigate(`/viewer?url=${encodeURIComponent(button.url)}`);
+    } else if (button.openType === "new_tab") {
+      // Abre em uma nova aba
+      window.open(button.url, "_blank", "noopener,noreferrer");
+    }
+  };
 
   // Função para retornar o ícone correto baseado no nome
   const getIconComponent = (iconName: string, color: string): ReactNode => {
@@ -101,6 +117,7 @@ export default function CustomButtonsList({ pageType }: CustomButtonsListProps) 
           href={button.url}
           iconBgClass={`bg-opacity-10`}
           style={{ backgroundColor: `${button.iconBgColor}20` }}
+          onClick={(e) => handleButtonClick(button, e)}
         />
       ))}
     </>

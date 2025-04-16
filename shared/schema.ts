@@ -20,6 +20,10 @@ export type User = typeof users.$inferSelect;
 export const pageTypes = ["home", "alex", "servico", "sites", "entretenimento"] as const;
 export type PageType = typeof pageTypes[number];
 
+// Tipos de abertura de link
+export const openTypes = ["iframe", "new_tab"] as const;
+export type OpenType = typeof openTypes[number];
+
 export const customButtons = pgTable("custom_buttons", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
@@ -28,6 +32,7 @@ export const customButtons = pgTable("custom_buttons", {
   icon: text("icon").notNull(),
   iconBgColor: text("icon_bg_color").notNull(),
   url: text("url").notNull(),
+  openType: text("open_type").notNull().default("iframe").$type<OpenType>(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -38,6 +43,7 @@ export const insertCustomButtonSchema = createInsertSchema(customButtons).pick({
   icon: true,
   iconBgColor: true,
   url: true,
+  openType: true,
 });
 
 export type InsertCustomButton = z.infer<typeof insertCustomButtonSchema>;
