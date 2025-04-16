@@ -553,8 +553,6 @@ export default function Admin() {
                         <TableCell className="max-w-[200px] truncate">
                           <a
                             href={button.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="text-blue-500 hover:underline"
                           >
                             {button.url}

@@ -20,8 +20,6 @@ export default function ServiceCard({
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
       className="bg-white overflow-hidden shadow rounded-lg border border-gray-100 card-hover-effect"
     >
       <div className="px-4 py-5 sm:p-6">
