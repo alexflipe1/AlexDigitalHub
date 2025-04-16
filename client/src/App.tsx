@@ -25,7 +25,6 @@ function Router() {
       <Route path="/admin" component={Admin} />
       <Route path="/login" component={Login} />
       <Route path="/alex-login" component={AlexLogin} />
-      <Route path="/viewer" component={Viewer} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -34,11 +33,23 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <MainLayout>
-        <Router />
-      </MainLayout>
+      <Routes />
       <Toaster />
     </QueryClientProvider>
+  );
+}
+
+// Componente para rotas que usam o MainLayout
+function Routes() {
+  return (
+    <Switch>
+      <Route path="/viewer" component={Viewer} />
+      <Route>
+        <MainLayout>
+          <Router />
+        </MainLayout>
+      </Route>
+    </Switch>
   );
 }
 
