@@ -232,20 +232,23 @@ export default function Admin() {
   const handleDelete = async (id: number) => {
     setIsLoading(true);
     try {
-      await apiRequest<void>({
+      await apiRequest({
         url: `/api/buttons/${id}`,
         method: "DELETE",
       });
+      
       toast({
         title: "Botão removido",
         description: "O botão foi removido com sucesso",
       });
+      
+      // Atualiza a lista de botões após a exclusão
       await fetchButtons();
-    } catch (error) {
+    } catch (error: any) {
       console.error("Erro ao excluir botão:", error);
       toast({
         title: "Erro",
-        description: "Não foi possível excluir o botão",
+        description: error.message || "Não foi possível excluir o botão",
         variant: "destructive",
       });
     } finally {

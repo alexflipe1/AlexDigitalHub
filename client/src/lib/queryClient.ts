@@ -22,6 +22,12 @@ export async function apiRequest<T = any>(options: {
   });
 
   await throwIfResNotOk(res);
+  
+  // Se o status for 204 (No Content), retorna undefined
+  if (res.status === 204) {
+    return undefined as unknown as T;
+  }
+  
   return res.json();
 }
 
