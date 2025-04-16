@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useLocation } from "wouter";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { PageType, pageTypes } from "@shared/schema";
+import { PageType, pageTypes, OpenType, openTypes } from "@shared/schema";
 import {
   Form,
   FormControl,
@@ -64,6 +64,7 @@ type CustomButton = {
   icon: string;
   iconBgColor: string;
   url: string;
+  openType: OpenType;
   createdAt: string;
 };
 
@@ -77,6 +78,9 @@ const formSchema = z.object({
   icon: z.string().min(1, { message: "Selecione um ícone" }),
   iconBgColor: z.string().min(1, { message: "Escolha uma cor de fundo" }),
   url: z.string().url({ message: "URL inválida" }),
+  openType: z.enum(["iframe", "new_tab"] as const, {
+    required_error: "Selecione como o link será aberto",
+  }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -98,6 +102,7 @@ export default function Admin() {
       icon: "Home",
       iconBgColor: "#3b82f6",
       url: "https://",
+      openType: "iframe",
     },
   });
 
@@ -225,6 +230,7 @@ export default function Admin() {
       icon: button.icon,
       iconBgColor: button.iconBgColor,
       url: button.url,
+      openType: button.openType || "iframe", // Valor padrão caso não exista
     });
   };
 

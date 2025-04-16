@@ -8,6 +8,7 @@ interface ServiceCardProps {
   href: string;
   iconBgClass?: string;
   style?: React.CSSProperties;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 export default function ServiceCard({
@@ -16,13 +17,21 @@ export default function ServiceCard({
   icon,
   href,
   iconBgClass = "bg-primary/10",
-  style
+  style,
+  onClick
 }: ServiceCardProps) {
   const [location, setLocation] = useLocation();
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     
+    // Se temos um handler de clique personalizado, use-o
+    if (onClick) {
+      onClick(e);
+      return;
+    }
+    
+    // Caso contrário, use o comportamento padrão
     // Verifica se o link é interno ou externo
     if (href.startsWith('/') || href.startsWith(window.location.origin)) {
       // Link interno - navega diretamente
