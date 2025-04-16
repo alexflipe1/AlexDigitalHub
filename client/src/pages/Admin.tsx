@@ -176,6 +176,18 @@ export default function Admin() {
         return pageType;
     }
   };
+  
+  // Formatar tipo de abertura
+  const formatOpenType = (openType: OpenType): string => {
+    switch (openType) {
+      case "iframe":
+        return "Dentro do site";
+      case "new_tab":
+        return "Nova aba";
+      default:
+        return openType;
+    }
+  };
 
   // Manipulador de envio do formulário
   const onSubmit = async (values: FormValues) => {
@@ -478,6 +490,36 @@ export default function Admin() {
                       )}
                     />
                   </div>
+                  
+                  <div className="grid grid-cols-1 gap-4">
+                    <FormField
+                      control={form.control}
+                      name="openType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Método de Abertura</FormLabel>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Como o link será aberto" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="iframe">Dentro do site (iframe)</SelectItem>
+                              <SelectItem value="new_tab">Nova aba</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormDescription>
+                            Escolha como o link será aberto quando o usuário clicar no botão
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
 
                   <div className="flex justify-end space-x-2">
                     {editingButton && (
@@ -533,6 +575,7 @@ export default function Admin() {
                       <TableHead>Página</TableHead>
                       <TableHead>Ícone</TableHead>
                       <TableHead>URL</TableHead>
+                      <TableHead>Abertura</TableHead>
                       <TableHead className="text-right">Ações</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -574,6 +617,11 @@ export default function Admin() {
                           >
                             {button.url}
                           </a>
+                        </TableCell>
+                        <TableCell>
+                          <span className={`px-2 py-1 rounded-full text-xs ${button.openType === 'iframe' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'}`}>
+                            {formatOpenType(button.openType || 'iframe')}
+                          </span>
                         </TableCell>
                         <TableCell className="text-right">
                           <div className="flex justify-end gap-2">
