@@ -552,12 +552,19 @@ export default function Admin() {
                           </div>
                         </TableCell>
                         <TableCell className="max-w-[200px] truncate">
-                          <NavbarLink
+                          <a
                             href={button.url}
+                            onClick={(e) => {
+                              if (!button.url.startsWith('/')) {
+                                e.preventDefault();
+                                localStorage.setItem('lastPage', '/admin');
+                                window.location.href = button.url;
+                              }
+                            }}
                             className="text-blue-500 hover:underline"
                           >
                             {button.url}
-                          </NavbarLink>
+                          </a>
                         </TableCell>
                         <TableCell className="text-right">
                           <div className="flex justify-end gap-2">
