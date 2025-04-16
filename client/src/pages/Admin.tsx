@@ -5,6 +5,7 @@ import { useLocation } from "wouter";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PageType, pageTypes } from "@shared/schema";
+import NavbarLink from "@/components/NavbarLinker";
 import {
   Form,
   FormControl,
@@ -551,20 +552,12 @@ export default function Admin() {
                           </div>
                         </TableCell>
                         <TableCell className="max-w-[200px] truncate">
-                          <a
-                            href="#"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              if (button.url.startsWith('/')) {
-                                setLocation(button.url);
-                              } else {
-                                setLocation(`/viewer?url=${encodeURIComponent(button.url)}&from=/admin`);
-                              }
-                            }}
+                          <NavbarLink
+                            href={button.url}
                             className="text-blue-500 hover:underline"
                           >
                             {button.url}
-                          </a>
+                          </NavbarLink>
                         </TableCell>
                         <TableCell className="text-right">
                           <div className="flex justify-end gap-2">

@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useLocation } from "wouter";
+import NavbarLink from "./NavbarLinker";
 
 interface ServiceCardProps {
   title: string;
@@ -18,26 +18,9 @@ export default function ServiceCard({
   iconBgClass = "bg-primary/10",
   style
 }: ServiceCardProps) {
-  const [location, setLocation] = useLocation();
-
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    
-    // Verifica se o link é interno ou externo
-    if (href.startsWith('/') || href.startsWith(window.location.origin)) {
-      // Link interno - navega diretamente
-      setLocation(href);
-    } else {
-      // Link externo - redireciona para o visualizador
-      const currentPath = location;
-      setLocation(`/viewer?url=${encodeURIComponent(href)}&from=${encodeURIComponent(currentPath)}`);
-    }
-  };
-
   return (
-    <a
+    <NavbarLink
       href={href}
-      onClick={handleClick}
       className="bg-white overflow-hidden shadow rounded-lg border border-gray-100 card-hover-effect"
     >
       <div className="px-4 py-5 sm:p-6">
@@ -51,6 +34,6 @@ export default function ServiceCard({
           </div>
         </div>
       </div>
-    </a>
+    </NavbarLink>
   );
 }

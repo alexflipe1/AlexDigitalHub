@@ -13,6 +13,7 @@ import Login from "@/pages/Login";
 import AlexLogin from "@/pages/AlexLogin";
 import MainLayout from "./layouts/MainLayout";
 import { NavbarTracker } from "@/components/NavbarLinker";
+import ScriptInjector from "@/components/ScriptInjector";
 
 function Router() {
   return (
@@ -35,6 +36,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       {/* O NavbarTracker rastreia a navegação do usuário para poder retornar quando vier de sites externos */}
       <NavbarTracker />
+      {/* Injeta o script da barra de navegação para sites externos */}
+      <ScriptInjector />
       <MainLayout>
         <Router />
       </MainLayout>
