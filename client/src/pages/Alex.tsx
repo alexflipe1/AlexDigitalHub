@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import CustomButtonsList from "@/components/CustomButtonsList";
-import { LogOut } from "lucide-react";
+import { LogOut, Sliders } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export default function Alex() {
   const [_, setLocation] = useLocation();
@@ -53,6 +54,26 @@ export default function Alex() {
           <LogOut className="h-4 w-4" />
           Sair
         </Button>
+      </div>
+      
+      {/* Seção de Administração */}
+      <div className="mb-8">
+        <h3 className="custom-buttons-title mb-4">Administração</h3>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <Link href="/admin" className="bg-white overflow-hidden shadow rounded-lg border border-gray-100 card-hover-effect">
+            <div className="px-4 py-5 sm:p-6">
+              <div className="flex items-center">
+                <div className="flex-shrink-0 bg-orange-100 rounded-md p-3">
+                  <Sliders className="h-6 w-6 text-orange-500" />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium text-gray-900">Administração</h3>
+                  <p className="mt-1 text-sm text-gray-500">Gerenciar botões personalizados</p>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
       </div>
       
       {/* Todos os botões são personalizados e gerenciados pelo admin */}

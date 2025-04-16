@@ -3,8 +3,7 @@ import {
   User, 
   Settings, 
   Play, 
-  Globe,
-  Sliders 
+  Globe 
 } from "lucide-react";
 
 export default function Home() {
@@ -61,16 +60,6 @@ export default function Home() {
                 </div>
                 <h3 className="mt-4 text-lg font-medium text-gray-900">Sites</h3>
                 <p className="mt-1 text-sm text-gray-500">Acesse meus sites</p>
-              </div>
-            </Link>
-            
-            <Link href="/admin" className="bg-white overflow-hidden shadow rounded-lg border border-gray-100 card-hover-effect">
-              <div className="px-4 py-5 sm:p-6 text-center">
-                <div className="bg-orange-100 inline-flex p-3 rounded-full">
-                  <Sliders className="h-6 w-6 text-orange-500" />
-                </div>
-                <h3 className="mt-4 text-lg font-medium text-gray-900">Administração</h3>
-                <p className="mt-1 text-sm text-gray-500">Gerenciar botões personalizados</p>
               </div>
             </Link>
           </div>
