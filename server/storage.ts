@@ -1,5 +1,5 @@
 import { users, type User, type InsertUser, customButtons, type CustomButton, type InsertCustomButton, type PageType } from "@shared/schema";
-import { DatabaseStorage } from "./databaseStorage";
+import { SQLiteStorage } from "./sqliteStorage";
 
 // Interface para as operações de armazenamento
 export interface IStorage {
@@ -16,5 +16,6 @@ export interface IStorage {
   deleteCustomButton(id: number): Promise<boolean>;
 }
 
-// Usar DatabaseStorage para persistência de dados
-export const storage = new DatabaseStorage();
+// Usar SQLiteStorage para persistência de dados em arquivo
+// Isso será mais fácil de transportar para o ambiente Proxmox
+export const storage = new SQLiteStorage();
