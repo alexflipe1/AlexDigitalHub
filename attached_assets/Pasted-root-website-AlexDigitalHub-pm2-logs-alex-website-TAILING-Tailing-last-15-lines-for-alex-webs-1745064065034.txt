@@ -1,0 +1,104 @@
+root@website:~/AlexDigitalHub# pm2 logs alex-website
+[TAILING] Tailing last 15 lines for [alex-website] process (change the value with --lines option)
+/root/.pm2/logs/alex-website-out.log last 15 lines:
+0|alex-web | > rest-express@1.0.0 build
+0|alex-web | > vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+0|alex-web | 
+0|alex-web | vite v5.4.14 building for production...
+0|alex-web | transforming...
+0|alex-web | ✓ 1842 modules transformed.
+0|alex-web | rendering chunks...
+0|alex-web | computing gzip size...
+0|alex-web | ../dist/public/index.html                   1.84 kB │ gzip:   0.75 kB
+0|alex-web | ../dist/public/assets/index-yNhaLSI5.css   63.08 kB │ gzip:  11.02 kB
+0|alex-web | ../dist/public/assets/index-BetigBtm.js   477.42 kB │ gzip: 145.91 kB
+0|alex-web | ✓ built in 8.62s
+0|alex-web | 
+0|alex-web | Iniciando o servidor...
+0|alex-web | Executando: NODE_ENV=production node dist/index.js
+
+/root/.pm2/logs/alex-website-error.log last 15 lines:
+0|alex-web | Saída de erro: 
+0|alex-web |   dist/index.js  12.5kb
+0|alex-web | 
+0|alex-web | ⚡ Done in 6ms
+0|alex-web | 
+0|alex-web | ReferenceError: require is not defined in ES module scope, you can use import instead
+0|alex-web | This file is being treated as an ES module because it has a '.js' file extension and '/root/AlexDigitalHub/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension.
+0|alex-web |     at file:///root/AlexDigitalHub/production-server.js:9:18
+0|alex-web |     at ModuleJob.run (node:internal/modules/esm/module_job:222:25)
+0|alex-web |     at async ModuleLoader.import (node:internal/modules/esm/loader:323:24)
+0|alex-web | ReferenceError: require is not defined in ES module scope, you can use import instead
+0|alex-web | This file is being treated as an ES module because it has a '.js' file extension and '/root/AlexDigitalHub/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension.
+0|alex-web |     at file:///root/AlexDigitalHub/production-server.js:9:18
+0|alex-web |     at ModuleJob.run (node:internal/modules/esm/module_job:222:25)
+0|alex-web |     at async ModuleLoader.import (node:internal/modules/esm/loader:323:24)
+
+
+
+O ChatGPT disse:
+O erro que você está recebendo ocorre porque o Node.js está tratando o arquivo como um módulo ESM (ECMAScript Module), já que o arquivo production-server.js tem a extensão .js e o package.json contém "type": "module". Isso significa que o require não está disponível, já que import/export deve ser usado no lugar.
+
+Como Resolver:
+Existem duas formas de corrigir isso, dependendo de como você quer estruturar o seu projeto:
+
+1. Usar Módulos ESM com import/export
+Se você deseja usar a sintaxe de módulos ESM, você precisa substituir require() por import e module.exports por export.
+
+Alterações necessárias:
+
+Substituir require() por import.
+
+Substituir module.exports por export.
+
+Exemplo:
+
+javascript
+Copiar
+Editar
+// Substitua isso
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+
+// Por isso
+import express from 'express';
+import path from 'path';
+import fs from 'fs';
+Além disso, você pode precisar ajustar outras partes do código para garantir que está usando a sintaxe correta de ESM.
+
+2. Usar CommonJS com .cjs
+Se você deseja continuar usando a sintaxe de require() e module.exports, você pode renomear o arquivo para a extensão .cjs (como o erro sugere).
+
+Passos para isso:
+
+Renomear o arquivo production-server.js para production-server.cjs.
+
+Ajustar o package.json: Certifique-se de que o package.json não tenha a linha "type": "module", ou se ela existir, remova-a. Isso indicará ao Node.js que você está usando CommonJS e não ESM.
+
+Seu package.json deve ficar assim:
+
+json
+Copiar
+Editar
+{
+  "name": "alex-web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "vite": "^5.4.14"
+  }
+}
+Ao usar .cjs, você pode continuar usando a sintaxe de require() normalmente.
+
+3. Verifique as Dependências
+Certifique-se de que todas as dependências também sejam compatíveis com ESM ou CommonJS, conforme o seu caso. Dependências que não são compatíveis com ESM podem causar problemas.
+
+Conclusão:
+Se você quiser usar a sintaxe de módulos ESM (com import), atualize o código para usar import e export. Caso contrário, se preferir manter o uso de require(), altere o nome do arquivo para .cjs e remova a linha "type": "module" do package.json.
+
+Escolha a abordagem que faz mais sentido para o seu projeto e ajuste o código conforme necessário.

@@ -1,19 +1,14 @@
 #!/usr/bin/env node
 
 /**
- * Script para iniciar o servidor em produção com Node.js v18 e ES Modules
- * Use: node production-server.js
+ * Script para iniciar o servidor em produção com Node.js v18
+ * Use: node production-server.cjs
  */
 
-// Usando módulos ES para compatibilidade com "type": "module" no package.json
-import { exec } from 'child_process';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import { existsSync, mkdirSync } from 'fs';
-
-// Obter __dirname equivalente em ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Usando módulos CommonJS para compatibilidade com Node.js v18
+const { exec } = require('child_process');
+const path = require('path');
+const fs = require('fs');
 
 // Configurações
 const PORT = process.env.PORT || 5000;
@@ -44,23 +39,23 @@ async function startServer() {
     console.log('Iniciando o servidor em modo de produção...');
     
     // Verificar e criar diretórios se necessário
-    const distDir = join(__dirname, 'dist');
-    const publicDir = join(distDir, 'public');
+    const distDir = path.join(__dirname, 'dist');
+    const publicDir = path.join(distDir, 'public');
     
-    if (!existsSync(distDir)) {
-      mkdirSync(distDir);
+    if (!fs.existsSync(distDir)) {
+      fs.mkdirSync(distDir);
     }
-    if (!existsSync(publicDir)) {
-      mkdirSync(publicDir);
+    if (!fs.existsSync(publicDir)) {
+      fs.mkdirSync(publicDir);
     }
     
     // Instalar dependências se necessário
-    if (!existsSync(join(__dirname, 'node_modules'))) {
+    if (!fs.existsSync(path.join(__dirname, 'node_modules'))) {
       console.log('Instalando dependências...');
       await runCommand('npm install --production');
     }
     
-    // Construir o projeto
+    // Construir o projeto - sem usar import.meta.dirname
     console.log('Construindo o projeto...');
     await runCommand('npm run build');
     
